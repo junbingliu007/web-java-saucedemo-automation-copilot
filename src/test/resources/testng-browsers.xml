@@ -1,0 +1,25 @@
+<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd" >
+<suite name="SauceDemo Browsers" parallel="tests" thread-count="3">
+  <listeners>
+    <listener class-name="framework.listeners.AllureTestListener"/>
+    <listener class-name="framework.listeners.AnnotationTransformer"/>
+  </listeners>
+  <test name="Chrome">
+    <parameter name="browser" value="chrome"/>
+    <packages>
+      <package name="tests"/>
+    </packages>
+  </test>
+  <test name="Firefox">
+    <parameter name="browser" value="firefox"/>
+    <packages>
+      <package name="tests"/>
+    </packages>
+  </test>
+  <test name="Edge">
+    <parameter name="browser" value="edge"/>
+    <packages>
+      <package name="tests"/>
+    </packages>
+  </test>
+</suite>

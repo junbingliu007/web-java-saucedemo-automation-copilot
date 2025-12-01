@@ -1,0 +1,5 @@
+username,password,role,expectedError
+standard_user,secret_sauce,standard,
+locked_out_user,secret_sauce,locked,Sorry, this user has been locked out.
+problem_user,secret_sauce,problem,
+performance_glitch_user,secret_sauce,glitch,
