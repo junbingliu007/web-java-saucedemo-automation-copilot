@@ -15,6 +15,12 @@
     <jackson.version>2.17.1</jackson.version>
     <commons.csv.version>1.10.0</commons.csv.version>
     <surefire.version>3.2.5</surefire.version>
+    <suiteXmlFile>src/test/resources/testng-browsers.xml</suiteXmlFile>
+    <threads>3</threads>
+    <browser>chrome</browser>
+    <headless>false</headless>
+    <baseUrl>https://www.saucedemo.com</baseUrl>
+    <retryCount>1</retryCount>
   </properties>
 
   <dependencies>
@@ -28,7 +34,7 @@
       <groupId>org.testng</groupId>
       <artifactId>testng</artifactId>
       <version>${testng.version}</version>
-      <scope>test</scope>
+<!--      <scope>test</scope>-->
     </dependency>
 
     <dependency>
