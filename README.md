@@ -15,6 +15,8 @@ Java + TestNG + Selenium + Allure 的 Web 自动化工程，用于覆盖 https:/
 
 ## 快速开始
 ```bash
+mvn clean
+```bash
 mvn clean test
 ```bash
 mvn clean test -DsuiteXmlFile=src/test/resources/testng-parallel.xml -Dheadless=true
@@ -23,6 +25,12 @@ mvn clean test -DsuiteXmlFile=src/test/resources/testng-parallel.xml -Dheadless=
 # (需安装 allure 命令行)
 ```bash
 allure serve target/allure-results
+
+# 生成Allure报告
+mvn allure:report
+
+# 打开Allure报告
+mvn allure:serve
 
 
 命令行覆盖示例：

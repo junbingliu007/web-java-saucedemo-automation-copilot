@@ -4,9 +4,7 @@ import framework.config.ConfigLoader;
 import framework.driver.DriverFactory;
 import framework.utils.Waits;
 import io.qameta.allure.Step;
-import org.openqa.selenium.By;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
+import org.openqa.selenium.*;
 
 public abstract class BasePage {
   protected final WebDriver driver;
@@ -17,7 +15,19 @@ public abstract class BasePage {
     this.waits = new Waits(driver, ConfigLoader.get().explicitWaitSec);
   }
 
-  protected WebElement $(By locator) { return waits.visible(locator); }
+//  protected WebElement $(By locator) { return waits.visible(locator); }
+
+  protected WebElement $(By locator) {
+    try {
+      return driver.findElement(locator);
+    } catch (StaleElementReferenceException e) {
+      // 重新查找元素
+      return driver.findElement(locator);
+    } catch (NoSuchElementException e) {
+      // 显示等待
+      return waits.visible(locator);
+    }
+  }
 
   @Step("点击元素: {locator}")
   protected void click(By locator) { waits.clickable(locator).click(); }
