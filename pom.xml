@@ -15,12 +15,12 @@
     <jackson.version>2.17.1</jackson.version>
     <commons.csv.version>1.10.0</commons.csv.version>
     <surefire.version>3.2.5</surefire.version>
-    <suiteXmlFile>src/test/resources/testng-browsers.xml</suiteXmlFile>
+    <suiteXmlFile>src/test/resources/testng-parallel.xml</suiteXmlFile>
     <threads>3</threads>
     <browser>chrome</browser>
     <headless>false</headless>
     <baseUrl>https://www.saucedemo.com</baseUrl>
-    <retryCount>1</retryCount>
+    <testRetryCount>2</testRetryCount>
   </properties>
 
   <dependencies>
@@ -76,11 +76,14 @@
           <release>17</release>
         </configuration>
       </plugin>
-<!--      <plugin>-->
-<!--        <groupId>io.qameta.allure</groupId>-->
-<!--        <artifactId>allure-maven</artifactId>-->
-<!--        <version>2.13.9</version>-->
-<!--      </plugin>-->
+      <plugin>
+        <groupId>io.qameta.allure</groupId>
+        <artifactId>allure-maven</artifactId>
+        <version>2.10.0</version>  <!-- 这是最后一个可用版本 -->
+        <configuration>
+          <resultsDirectory>${project.basedir}/allure-results</resultsDirectory>
+        </configuration>
+      </plugin>
       <plugin>
         <artifactId>maven-surefire-plugin</artifactId>
         <version>${surefire.version}</version>
@@ -93,7 +96,7 @@
             <browser>${browser}</browser>
             <headless>${headless}</headless>
             <baseUrl>${baseUrl}</baseUrl>
-            <retryCount>${retryCount}</retryCount>
+            <testRetryCount>${testRetryCount}</testRetryCount>
           </systemPropertyVariables>
         </configuration>
       </plugin>

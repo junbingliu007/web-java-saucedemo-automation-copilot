@@ -35,7 +35,7 @@ public class DriverFactory {
         }
     }
 
-    private static WebDriver createDriver() {
+    private static synchronized WebDriver createDriver() {
         Config cfg = ConfigLoader.get();
         String browser = System.getProperty("browser", cfg.defaultBrowser).toUpperCase();
         boolean headless = cfg.headless;
@@ -43,9 +43,17 @@ public class DriverFactory {
             switch (BrowserType.valueOf(browser)) {
                 case CHROME -> {
                     ChromeOptions options = new ChromeOptions();
-                    options.setPageLoadStrategy(PageLoadStrategy.NORMAL);
+                    options.setPageLoadStrategy(PageLoadStrategy.EAGER);
                     if (headless) options.addArguments("--headless=new");
-                    options.addArguments("--window-size=1920,1080");
+                    options.addArguments(
+                        "--window-size=1920,1080",
+                        "--no-sandbox",
+                        "--disable-dev-shm-usage",
+                        "--disable-gpu",
+                        "--remote-allow-origins=*",
+                        "--disable-extensions",
+                        "--dns-prefetch-disable"
+                    );
                     return buildDriver(options, cfg);
                 }
                 case FIREFOX -> {

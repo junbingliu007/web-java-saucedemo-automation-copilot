@@ -4,7 +4,6 @@
     <listener class-name="framework.listeners.AllureTestListener"/>
     <listener class-name="framework.listeners.AnnotationTransformer"/>
   </listeners>
-
   <test name="Chrome">
     <parameter name="browser" value="chrome"/>
     <packages>

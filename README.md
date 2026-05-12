@@ -7,33 +7,25 @@ Java + TestNG + Selenium + Allure 的 Web 自动化工程，用于覆盖 https:/
 - 显式等待策略（WebDriverWait），避免隐式等待冲突
 - 线程安全：ThreadLocal<WebDriver> 支持方法级并行
 - Allure 报告：失败截图、步骤、标签、附件
-- 重试机制：全局 IRetryAnalyzer，可配置次数
+- 元素查找失败重试机制：自动处理 StaleElementReferenceException，次数可配置（`elementRetryCount`）
+- 用例失败重试机制：全局 IRetryAnalyzer，通过 AnnotationTransformer 自动注入，次数可配置（`testRetryCount`）
 - 多浏览器并行：Chrome / Firefox / Edge
 - 数据驱动：CSV DataProvider
 - 灵活配置：`config.properties` + 命令行覆盖
 - 统一断言封装：AssertHelper（自动记录步骤与期望/实际）
 
 ## 快速开始
+
 ```bash
-mvn clean
-```bash
+# 运行全量测试（默认并行，Chrome + Firefox + Edge）
 mvn clean test
-```bash
-mvn clean test -DsuiteXmlFile=src/test/resources/testng-parallel.xml -Dheadless=true
 
-# 生成并查看 Allure 报告：
-# (需安装 allure 命令行)
-```bash
-allure serve target/allure-results
+# 无头模式
+mvn clean test -Dheadless=true
 
-# 生成Allure报告
-mvn allure:report
+# 指定浏览器 + 重试次数
+mvn clean test -Dbrowser=chrome -Dheadless=true -DtestRetryCount=2
 
-# 打开Allure报告
+# 生成并查看 Allure 报告（需先运行测试）
 mvn allure:serve
-
-
-命令行覆盖示例：
-```bash
-mvn clean test -DsuiteXmlFile=src/test/resources/testng-parallel.xml   -Dbrowser=firefox -DretryCount=2 -DbaseUrl=https://www.saucedemo.com
 ```

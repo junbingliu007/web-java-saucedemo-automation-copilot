@@ -6,7 +6,7 @@ import org.testng.ITestResult;
 
 public class RetryAnalyzer implements IRetryAnalyzer {
     private int count = 0;
-    private final int max = ConfigLoader.get().retryCount;
+    private final int max = ConfigLoader.get().testRetryCount;
 
     @Override
     public boolean retry(ITestResult result) {

@@ -18,12 +18,13 @@ public class ConfigLoader {
                 int explicitWaitSec = Integer.parseInt(System.getProperty("explicitWaitSec", p.getProperty("explicitWaitSec")));
                 int pageLoadTimeoutSec = Integer.parseInt(System.getProperty("pageLoadTimeoutSec", p.getProperty("pageLoadTimeoutSec")));
                 boolean screenshotOnFail = Boolean.parseBoolean(System.getProperty("screenshotOnFail", p.getProperty("screenshotOnFail")));
-                int retryCount = Integer.parseInt(System.getProperty("retryCount", p.getProperty("retryCount")));
+                int testRetryCount = Integer.parseInt(System.getProperty("testRetryCount", p.getProperty("testRetryCount")));
+                int elementRetryCount = Integer.parseInt(System.getProperty("elementRetryCount", p.getProperty("elementRetryCount")));
                 boolean gridEnabled = Boolean.parseBoolean(System.getProperty("grid.enabled", p.getProperty("grid.enabled")));
                 String gridUrl = System.getProperty("grid.url", p.getProperty("grid.url"));
 
                 CONFIG = new Config(baseUrl, defaultBrowser, headless, explicitWaitSec,
-                        pageLoadTimeoutSec, screenshotOnFail, retryCount, gridEnabled, gridUrl);
+                        pageLoadTimeoutSec, screenshotOnFail, testRetryCount, elementRetryCount, gridEnabled, gridUrl);
             } catch (Exception e) {
                 throw new RuntimeException("Load config failed", e);
             }

@@ -19,7 +19,17 @@ public class BaseTest {
 
     @Step("打开基础地址")
     protected void openBaseUrl() {
-        driver.get(ConfigLoader.get().baseUrl);
+        String url = ConfigLoader.get().baseUrl;
+        int attempts = 3;
+        for (int i = 1; i <= attempts; i++) {
+            try {
+                driver.get(url);
+                return;
+            } catch (Exception e) {
+                if (i == attempts) throw e;
+                try { Thread.sleep(500); } catch (InterruptedException ie) { Thread.currentThread().interrupt(); }
+            }
+        }
     }
 
     @AfterMethod(alwaysRun = true)
