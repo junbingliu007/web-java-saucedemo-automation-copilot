@@ -1,6 +1,5 @@
-# 自动化测试框架
+# Web自动化测试框架
 
-Web 自动化工程，用于覆盖 https://www.saucedemo.com 的核心/全量用例。
 
 > 项目：saucedemo-automation | 技术栈：Java 17 + Selenium 4 + TestNG + Allure
 
