@@ -16,3 +16,4 @@ allure-results/
 
 # Spec workflow
 .spec-workflow/
+.playwright-mcp/
