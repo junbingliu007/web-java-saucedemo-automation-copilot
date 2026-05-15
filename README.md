@@ -1,8 +1,5 @@
 # Web自动化测试框架
-
-
 > 项目：saucedemo-automation | 技术栈：Java 17 + Selenium 4 + TestNG + Allure
-
 ---
 
 ## 关键特性
