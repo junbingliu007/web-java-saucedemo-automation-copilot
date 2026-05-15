@@ -2,19 +2,33 @@ package tests;
 
 import framework.assertions.AssertHelper;
 import framework.pages.*;
+import framework.utils.CsvUtils;
 import io.qameta.allure.Epic;
 import io.qameta.allure.Feature;
 import io.qameta.allure.Story;
+import org.apache.commons.csv.CSVRecord;
+import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
+
+import java.util.List;
 
 @Epic("SauceDemo")
 @Feature("购物车与结账")
 public class CartAndCheckoutTests extends BaseTest {
 
+    @DataProvider(name = "standardUser")
+    public Object[][] standardUser() {
+        List<CSVRecord> rows = CsvUtils.read("testdata/users.csv");
+        return rows.stream()
+                .filter(r -> "standard".equals(r.get("role")))
+                .map(r -> new Object[]{r.get("username"), r.get("password")})
+                .toArray(Object[][]::new);
+    }
+
     @Story("标准用户完成一次下单")
-    @Test(description = "标准用户下单成功流程")
-    public void standardUserCheckout() {
-        InventoryPage inv = new LoginPage().loginAs("standard_user", "secret_sauce");
+    @Test(dataProvider = "standardUser", description = "标准用户下单成功流程")
+    public void standardUserCheckout(String user, String pass) {
+        InventoryPage inv = new LoginPage().loginAs(user, pass);
         AssertHelper.assertTrue(inv.isLoaded(), "登录后应进入商品页");
 
         inv.addToCart("Sauce Labs Backpack")

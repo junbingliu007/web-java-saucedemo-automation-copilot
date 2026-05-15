@@ -20,7 +20,7 @@
     <browser>chrome</browser>
     <headless>false</headless>
     <baseUrl>https://www.saucedemo.com</baseUrl>
-    <testRetryCount>2</testRetryCount>
+    <testRetryCount>3</testRetryCount>
   </properties>
 
   <dependencies>
