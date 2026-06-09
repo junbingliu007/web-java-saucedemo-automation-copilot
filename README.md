@@ -1,6 +1,9 @@
-# Web自动化测试框架
-> 项目：saucedemo-automation | 技术栈：Java 17 + Selenium 4 + TestNG + Allure
+# UI/API自动化测试框架（精简版/基础版）
+> 项目：AutoTest-Basic | 技术栈：Java 17 + Selenium 4 + TestNG + Allure
 ---
+
+## 获取完整商业版（企业级）
+[跳转链接(CSDN)](https://blog.csdn.net/m0_37606579/article/details/161265408?fromshare=blogdetail&sharetype=blogdetail&sharerId=161265408&sharerefer=PC&sharesource=&sharefrom=from_link)
 
 ## 关键特性
 - Page Object（PO）模式 + 组件化（Page Components）
